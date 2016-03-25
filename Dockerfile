@@ -1,7 +1,13 @@
-FROM notsteve/sagetv-unraid 
+FROM notsteve/sagetv-base 
 
 MAINTAINER notsteve 
 
+CMD ["/sbin/my_init"]
 
-CMD  cp -r -u /opt/sagetv/server/* /sagetv  && /sagetv/startsage && sleep infinity
+ADD src/ /root/
+
+mv  /root/002-start-sage-server.sh /etc/my_init.d/002-start-sage-server.sh &&\
+chmod a+x /etc/my_init.d/*
+
+
 
